@@ -43,7 +43,6 @@ export default function MovieDetailPage() {
       if (trailer) {
         const trailerUrl = `https://www.youtube.com/embed/${trailer.key}`;
         setTrailer(trailerUrl);
-        localStorage.setItem(`trailer-${id}`, trailerUrl);
       }
     }
     setLoading(false);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { imageOrigin, searchMovies } from '../api/moviedb';
 import Loading from '../components/Loading';
+import notFound from '../assets/not-found.jpg';
 
 export default function Search() {
   const [query, setQuery] = useState('');
@@ -33,14 +34,14 @@ export default function Search() {
   };
 
   return (
-    <div className='p-4'>
-      <form onSubmit={handleSearch} className='relative w-full max-w-md mx-auto mt-8'>
+    <div className='max-w-6xl mx-auto mt-8'>
+      <form onSubmit={handleSearch} className='relative w-full max-w-lg mx-auto mt-8'>
         <input
           type='text'
           value={query}
           onChange={handleChange}
           placeholder='Search'
-          className='p-2 pl-4 pr-10 border rounded w-full'
+          className='p-2 pl-4 pr-10 border rounded-lg w-full focus:outline-none'
         />
         <button
           type='submit'
@@ -66,13 +67,21 @@ export default function Search() {
             <p className='my-5'>Results({results.length})</p>
             <div className='grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'>
               {results.map((movie) => (
-                <a href={`/movie/${movie.id}`} key={movie.id}>
-                  <img
-                    src={imageOrigin(movie.poster_path)}
-                    alt={movie.title}
-                    className='rounded-lg w-full h-auto'
-                  />
-                  <p className='mt-2 overflow-hidden text-ellipsis whitespace-nowrap'>
+                <a href={`/movie/${movie.id}`} key={movie.id} className='mb-5'>
+                  {movie.poster_path ? (
+                      <img
+                        src={imageOrigin(movie.poster_path)}
+                        alt={movie.title}
+                        className='w-full h-full object-cover rounded-lg'
+                      />
+                    ) : (
+                      <img
+                        src={notFound}
+                        alt={movie.title}
+                        className='w-full h-full object-cover rounded-lg'
+                      />
+                    )}
+                  <p className='overflow-hidden text-ellipsis whitespace-nowrap'>
                     {movie.title}
                   </p>
                 </a>
@@ -91,7 +100,9 @@ export default function Search() {
                 d='M448 32H361.9l-1 1-127 127h92.1l1-1L453.8 32.3c-1.9-.2-3.8-.3-5.8-.3zm64 128V96c0-15.1-5.3-29.1-14-40l-104 104H512zM294.1 32H201.9l-1 1L73.9 160h92.1l1-1 127-127zM64 32C28.7 32 0 60.7 0 96v64H6.1l1-1 127-127H64zM512 192H0V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192z'/>
             </svg>
           </div>
-          {searchExecuted ? <div className='text-xl text-center my-10'>No results found</div> : <div className='text-xl text-center my-10'>Search for a movie...</div>}
+          {searchExecuted 
+          ? <div className='text-xl text-center my-10'>No results found</div> 
+          : <div className='text-xl text-center my-10'>Search for a movie...</div>}
           </>
         )
       )}

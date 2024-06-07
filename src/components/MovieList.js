@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { CustomLeftArrow, CustomRightArrow } from './Buttons';
-import { MovieListCard } from './MovieCard';
+import { MovieCard } from './MovieCard';
 
 export default function MovieList({ title, data }) {
   const responsive = {
@@ -25,7 +25,7 @@ export default function MovieList({ title, data }) {
   };
 
   return (
-    <div className='max-w-6xl mx-auto my-5 relative p-4'>
+    <div className='max-w-6xl mx-auto my-5 relative'>
       <h1 className='text-xl mb-5'>{title}</h1>
       <Carousel
         responsive={responsive}
@@ -37,7 +37,7 @@ export default function MovieList({ title, data }) {
         customRightArrow={<CustomRightArrow />}
       >
         {data.map((item, index) => (
-          <MovieListCard key={index} item={item} />
+          <MovieCard key={index} item={item} />
         ))}
       </Carousel>
     </div>
