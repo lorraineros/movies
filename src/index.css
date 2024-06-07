@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  background-color: #131313;
+  color: #ffffff;
+}
+
+iframe {
+  width: 560px;
+  height: 315px;
+}
+
+@media screen and (max-width: 876px) {
+  iframe {
+    width: 400px;
+    height: 225px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  iframe {
+    width: 350px;
+    height: 175px;
+  }
+}
