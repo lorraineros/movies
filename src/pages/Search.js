@@ -73,6 +73,7 @@ export default function Search() {
                         src={imageOrigin(movie.poster_path)}
                         alt={movie.title}
                         className='w-full h-full object-cover rounded-lg'
+                        loading='lazy'
                       />
                     ) : (
                       <img

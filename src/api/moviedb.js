@@ -12,7 +12,7 @@ const movieCredits = id => `${apiBaseUrl}/movie/${id}/credits?api_key=${apiKey}`
 const movieVideos = id => `${apiBaseUrl}/movie/${id}/videos?api_key=${apiKey}`;
 const similarMovies = id => `${apiBaseUrl}/movie/${id}/similar?api_key=${apiKey}`;
 
-export const imageOrigin = path => path ? `https://image.tmdb.org/t/p/original/${path}`: null;
+export const imageOrigin = path => path ? `https://image.tmdb.org/t/p/w500/${path}`: null;
 
 const apiCall = async (endpoint, params) => {
   const options = {
