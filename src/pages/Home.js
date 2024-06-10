@@ -16,7 +16,7 @@ export default function Home() {
     getUpcomingMovies();
     getTopRatedMovies();
     getFavorites();
-  }, []);
+  }, [favorites]);
 
   const getTrendingMovies = async () => {
     try {
