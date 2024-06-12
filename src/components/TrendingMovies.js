@@ -4,6 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { imageOrigin } from '../api/moviedb';
 import { Link } from 'react-router-dom';
 import { CustomLeftArrow, CustomRightArrow } from './Buttons';
+import Loading from './Loading';
 
 export default function TrendingMovies({ data }) {
   const responsive = {
@@ -24,21 +25,23 @@ export default function TrendingMovies({ data }) {
   return (
     <div className='max-w-6xl mx-auto'>
       <h1 className='text-xl mb-5'>Trending</h1>
-      <Carousel
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        centerMode={true}
-        autoPlaySpeed={5000}
-        containerClass='carousel-container'
-        itemClass='carousel-item'
-        customLeftArrow={<CustomLeftArrow />}
-        customRightArrow={<CustomRightArrow />}
-      >
-        {data.map((item, index) => (
-          <MovieCard key={index} item={item} />
-        ))}
-      </Carousel>
+      { data.length === 0
+      ? <Loading />
+      : <Carousel
+          responsive={responsive}
+          infinite={true}
+          autoPlay={true}
+          centerMode={true}
+          autoPlaySpeed={5000}
+          containerClass='carousel-container'
+          itemClass='carousel-item'
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+        >
+          {data.map((item, index) => (
+            <MovieCard key={index} item={item} />
+          ))}
+        </Carousel>}
     </div>
   );
 }
